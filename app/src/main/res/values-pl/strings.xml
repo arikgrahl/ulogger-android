@@ -2,7 +2,7 @@
   ~ Copyright (c) 2017 Bartek Fabiszewski
   ~ http://www.fabiszewski.net
   ~
-  ~ This file is part of μlogger-android.
+  ~ This file is part of mobile-android.
   ~ Licensed under GPL, either version 3, or any later.
   ~ See <http://www.gnu.org/licenses/>
   -->
@@ -64,8 +64,8 @@
     <string name="empty_trackname_warning">Nazwa trasy nie może być pusta</string>
     <string name="logger_running_warning">Proszę najpierw zatrzymać zapisywanie bieżącej trasy</string>
     <string name="about">O programie</string>
-    <string name="about_description">Prosty program do zapisu pozycji geograficznej z funkcją przesyłania współrzędnych na własny <xliff:g id="server_link_open"><![CDATA[<a href="https://github.com/bfabiszewski/ulogger-server">]]></xliff:g>serwer μlogger<xliff:g id="server_link_close"><![CDATA[</a>]]></xliff:g>.</string>
-    <string name="about_description2">Więcej informacji oraz pomoc na stronie <xliff:g id="app_link_open"><![CDATA[<a href="https://github.com/bfabiszewski/ulogger-android">]]></xliff:g>projektu μlogger<xliff:g id="app_link_close"><![CDATA[</a>]]></xliff:g>.</string>
+    <string name="about_description">Prosty program do zapisu pozycji geograficznej z funkcją przesyłania współrzędnych na własny <xliff:g id="server_link_open"><![CDATA[<a href="https://github.com/bfabiszewski/ulogger-server">]]></xliff:g>serwer mobile<xliff:g id="server_link_close"><![CDATA[</a>]]></xliff:g>.</string>
+    <string name="about_description2">Więcej informacji oraz pomoc na stronie <xliff:g id="app_link_open"><![CDATA[<a href="https://github.com/bfabiszewski/ulogger-android">]]></xliff:g>projektu mobile<xliff:g id="app_link_close"><![CDATA[</a>]]></xliff:g>.</string>
     <string name="about_version">Wersja %s</string>
     <string name="about_license">Licencja: GPL</string>
     <string name="uploading_failed">Błąd wysyłania</string>

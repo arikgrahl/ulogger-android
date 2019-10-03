@@ -2,7 +2,7 @@
  * Copyright (c) 2017 Bartek Fabiszewski
  * http://www.fabiszewski.net
  *
- * This file is part of μlogger-android.
+ * This file is part of mobile-android.
  * Licensed under GPL, either version 3, or any later.
  * See <http://www.gnu.org/licenses/>
  */
@@ -14,7 +14,7 @@ android {
     buildToolsVersion '29.0.0'
 
     defaultConfig {
-        applicationId 'net.fabiszewski.ulogger'
+        applicationId 'de.arikgrahl.mobile'
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 208

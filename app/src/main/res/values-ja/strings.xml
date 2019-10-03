@@ -2,7 +2,7 @@
   ~ Copyright (c) 2017 Bartek Fabiszewski
   ~ http://www.fabiszewski.net
   ~
-  ~ This file is part of μlogger-android.
+  ~ This file is part of mobile-android.
   ~ Licensed under GPL, either version 3, or any later.
   ~ See <http://www.gnu.org/licenses/>
   -->
@@ -59,8 +59,8 @@
     <string name="no_track_warning">まず新しいトラックを設定してください</string>
     <string name="logger_running_warning">まず現在のトラックを停止してください</string>
     <string name="about">アプリについて</string>
-    <string name="about_description">ライブトラッキングと独自の <xliff:g id="server_link_open"><![CDATA[<a href="https://github.com/bfabiszewski/ulogger-server">]]></xliff:g>μlogger サーバー<xliff:g id="server_link_close"><![CDATA[</a>]]></xliff:g> に位置のアップロードをサポートする、シンプルロケーションロガー。</string>
-    <string name="about_description2">詳細はこちらをご覧ください <xliff:g id="app_link_open"><![CDATA[<a href="https://github.com/bfabiszewski/ulogger-android">]]></xliff:g>μlogger ホームページ<xliff:g id="app_link_close"><![CDATA[</a>]]></xliff:g>。</string>
+    <string name="about_description">ライブトラッキングと独自の <xliff:g id="server_link_open"><![CDATA[<a href="https://github.com/bfabiszewski/ulogger-server">]]></xliff:g>mobile サーバー<xliff:g id="server_link_close"><![CDATA[</a>]]></xliff:g> に位置のアップロードをサポートする、シンプルロケーションロガー。</string>
+    <string name="about_description2">詳細はこちらをご覧ください <xliff:g id="app_link_open"><![CDATA[<a href="https://github.com/bfabiszewski/ulogger-android">]]></xliff:g>mobile ホームページ<xliff:g id="app_link_close"><![CDATA[</a>]]></xliff:g>。</string>
     <string name="about_version">バージョン %s</string>
     <string name="about_license">ライセンス: GPL</string>
     <string name="uploading_failed">アップロードに失敗しました:</string>

@@ -2,7 +2,7 @@
   ~ Copyright (c) 2017 Bartek Fabiszewski
   ~ http://www.fabiszewski.net
   ~
-  ~ This file is part of μlogger-android.
+  ~ This file is part of mobile-android.
   ~ Licensed under GPL, either version 3, or any later.
   ~ See <http://www.gnu.org/licenses/>
   -->
@@ -64,8 +64,8 @@
     <string name="empty_trackname_warning">El nombre de la ruta no puede estar vacío</string>
     <string name="logger_running_warning">Por favor, para el registro actual primero</string>
     <string name="about">Acerca de</string>
-    <string name="about_description">Aplicación de registro de ubicaciones sencilla, con soporte para registro continuo y subida de posiciones a tu propio <xliff:g id="server_link_open"><![CDATA[<a href="https://github.com/bfabiszewski/ulogger-server">]]></xliff:g>servidor μlogger<xliff:g id="server_link_close"><![CDATA[</a>]]></xliff:g>.</string>
-    <string name="about_description2">Para más información y ayuda, por favor consulta la <xliff:g id="app_link_open"><![CDATA[<a href="https://github.com/bfabiszewski/ulogger-android">]]></xliff:g>página de μlogger<xliff:g id="app_link_close"><![CDATA[</a>]]></xliff:g>.</string>
+    <string name="about_description">Aplicación de registro de ubicaciones sencilla, con soporte para registro continuo y subida de posiciones a tu propio <xliff:g id="server_link_open"><![CDATA[<a href="https://github.com/bfabiszewski/ulogger-server">]]></xliff:g>servidor mobile<xliff:g id="server_link_close"><![CDATA[</a>]]></xliff:g>.</string>
+    <string name="about_description2">Para más información y ayuda, por favor consulta la <xliff:g id="app_link_open"><![CDATA[<a href="https://github.com/bfabiszewski/ulogger-android">]]></xliff:g>página de mobile<xliff:g id="app_link_close"><![CDATA[</a>]]></xliff:g>.</string>
     <string name="about_version">Versión %s</string>
     <string name="about_license">Licencia: GPL</string>
     <string name="uploading_failed">La subida a fallado:</string>

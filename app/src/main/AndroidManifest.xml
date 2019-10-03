@@ -3,14 +3,14 @@
   ~ Copyright (c) 2017 Bartek Fabiszewski
   ~ http://www.fabiszewski.net
   ~
-  ~ This file is part of μlogger-android.
+  ~ This file is part of mobile-android.
   ~ Licensed under GPL, either version 3, or any later.
   ~ See <http://www.gnu.org/licenses/>
   -->
 
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="net.fabiszewski.ulogger">
+    package="de.arikgrahl.mobile">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -75,7 +75,7 @@
             android:exported="true"
             tools:ignore="ExportedReceiver">
             <intent-filter>
-                <action android:name="net.fabiszewski.ulogger.intent.action.COMMAND" />
+                <action android:name="de.arikgrahl.mobile.intent.action.COMMAND" />
             </intent-filter>
         </receiver>
     </application>

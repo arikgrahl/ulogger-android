@@ -2,13 +2,13 @@
   ~ Copyright (c) 2017 Bartek Fabiszewski
   ~ http://www.fabiszewski.net
   ~
-  ~ This file is part of μlogger-android.
+  ~ This file is part of mobile-android.
   ~ Licensed under GPL, either version 3, or any later.
   ~ See <http://www.gnu.org/licenses/>
   -->
 
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name" translatable="false">μlogger</string>
+    <string name="app_name" translatable="false">mobile</string>
     <string name="app_name_ascii" translatable="false">ulogger</string>
     <string name="button_start">Start</string>
     <string name="button_stop">Stop</string>
@@ -75,8 +75,8 @@
     <string name="empty_trackname_warning">Track name cannot be empty</string>
     <string name="logger_running_warning">Please stop current tracking first</string>
     <string name="about">About</string>
-    <string name="about_description">Simple location logger with support for live tracking and position uploading to own <xliff:g id="server_link_open"><![CDATA[<a href="https://github.com/bfabiszewski/ulogger-server">]]></xliff:g>μlogger server<xliff:g id="server_link_close"><![CDATA[</a>]]></xliff:g>.</string>
-    <string name="about_description2">For more information and help please see <xliff:g id="app_link_open"><![CDATA[<a href="https://github.com/bfabiszewski/ulogger-android">]]></xliff:g>μlogger homepage<xliff:g id="app_link_close"><![CDATA[</a>]]></xliff:g>.</string>
+    <string name="about_description">Simple location logger with support for live tracking and position uploading to own <xliff:g id="server_link_open"><![CDATA[<a href="https://github.com/bfabiszewski/ulogger-server">]]></xliff:g>mobile server<xliff:g id="server_link_close"><![CDATA[</a>]]></xliff:g>.</string>
+    <string name="about_description2">For more information and help please see <xliff:g id="app_link_open"><![CDATA[<a href="https://github.com/bfabiszewski/ulogger-android">]]></xliff:g>mobile homepage<xliff:g id="app_link_close"><![CDATA[</a>]]></xliff:g>.</string>
     <string name="about_version">Version %s</string>
     <string name="about_license">License: GPL</string>
     <string name="about_credits" translatable="false">2017 © Bartek Fabiszewski</string>

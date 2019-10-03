@@ -2,7 +2,7 @@
   ~ Copyright (c) 2017 Bartek Fabiszewski
   ~ http://www.fabiszewski.net
   ~
-  ~ This file is part of μlogger-android.
+  ~ This file is part of mobile-android.
   ~ Licensed under GPL, either version 3, or any later.
   ~ See <http://www.gnu.org/licenses/>
   -->
@@ -64,8 +64,8 @@
     <string name="empty_trackname_warning">Имя трека не может быть пустым</string>
     <string name="logger_running_warning">Пожалуйста, сначала остановите текущий трек</string>
     <string name="about">О программе</string>
-    <string name="about_description">Простой трекер с поддержкой трекинга в реальном времени и выгрузкой данных на личный <xliff:g id="server_link_open"><![CDATA[<a href=\"https://github.com/bfabiszewski/ulogger-server\">]]></xliff:g>сервер μlogger<xliff:g id="server_link_close"><![CDATA[</a>]]></xliff:g>.</string>
-    <string name="about_description2">Для дополнительной информации и помощи пожалуйста посетите <xliff:g id="app_link_open"><![CDATA[<a href=\"https://github.com/bfabiszewski/ulogger-android\">]]></xliff:g>домашнюю страницу μlogger<xliff:g id="app_link_close"><![CDATA[</a>]]></xliff:g>.</string>
+    <string name="about_description">Простой трекер с поддержкой трекинга в реальном времени и выгрузкой данных на личный <xliff:g id="server_link_open"><![CDATA[<a href=\"https://github.com/bfabiszewski/ulogger-server\">]]></xliff:g>сервер mobile<xliff:g id="server_link_close"><![CDATA[</a>]]></xliff:g>.</string>
+    <string name="about_description2">Для дополнительной информации и помощи пожалуйста посетите <xliff:g id="app_link_open"><![CDATA[<a href=\"https://github.com/bfabiszewski/ulogger-android\">]]></xliff:g>домашнюю страницу mobile<xliff:g id="app_link_close"><![CDATA[</a>]]></xliff:g>.</string>
     <string name="about_version">Версия %s</string>
     <string name="about_license">Лицензия: GPL</string>
     <string name="uploading_failed">Ошибка выгрузки:</string>

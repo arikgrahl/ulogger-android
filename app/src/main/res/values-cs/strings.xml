@@ -2,7 +2,7 @@
   ~ Copyright (c) 2017 Bartek Fabiszewski
   ~ http://www.fabiszewski.net
   ~
-  ~ This file is part of μlogger-android.
+  ~ This file is part of mobile-android.
   ~ Licensed under GPL, either version 3, or any later.
   ~ See <http://www.gnu.org/licenses/>
   -->
@@ -64,8 +64,8 @@
     <string name="empty_trackname_warning">Název trasy nemůže být prázdný</string>
     <string name="logger_running_warning">Nejdříve zastavte aktuální sledování</string>
     <string name="about">O nás...</string>
-    <string name="about_description">Jednoduchý záznamník polohy s podporou živého sledování a nahrávání pozic do vlastních stránek <xliff:g id="server_link_open"><![CDATA[<a href=\"https://github.com/bfabiszewski/ulogger-server\">]]></xliff:g>μlogger server<xliff:g id="server_link_close"><![CDATA[</a>]]></xliff:g>.</string>
-    <string name="about_description2">Další informace a nápovědu naleznete na domovské stránce <xliff:g id="app_link_open"><![CDATA[ <a href=\"https://github.com/bfabiszewski/ulogger-android\">]]></xliff:g> μlogger <xliff:g id="app_link_close"><![CDATA[</a>]]></xliff:g>.</string>
+    <string name="about_description">Jednoduchý záznamník polohy s podporou živého sledování a nahrávání pozic do vlastních stránek <xliff:g id="server_link_open"><![CDATA[<a href=\"https://github.com/bfabiszewski/ulogger-server\">]]></xliff:g>mobile server<xliff:g id="server_link_close"><![CDATA[</a>]]></xliff:g>.</string>
+    <string name="about_description2">Další informace a nápovědu naleznete na domovské stránce <xliff:g id="app_link_open"><![CDATA[ <a href=\"https://github.com/bfabiszewski/ulogger-android\">]]></xliff:g> mobile <xliff:g id="app_link_close"><![CDATA[</a>]]></xliff:g>.</string>
     <string name="about_version">Verze %s</string>
     <string name="about_license">Licence: GPL</string>
     <string name="uploading_failed">Nahrávání se nezdařilo:</string>

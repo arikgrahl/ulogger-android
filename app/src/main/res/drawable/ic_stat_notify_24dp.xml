@@ -1,16 +1,12 @@
-<!--
-  ~ Copyright (c) 2017 Bartek Fabiszewski
-  ~ http://www.fabiszewski.net
-  ~
-  ~ This file is part of μlogger-android.
-  ~ Licensed under GPL, either version 3, or any later.
-  ~ See <http://www.gnu.org/licenses/>
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="18.94719dp"
+    android:height="19.03872dp"
+    android:viewportWidth="18.94719"
+    android:viewportHeight="19.03872">
 
-  ~ Material Design icon by Google.
-  ~ Released under Apache License 2.0.
-  -->
-
-<vector android:height="24dp" android:viewportHeight="100.0"
-    android:viewportWidth="100.0" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
-    <path android:fillColor="#FFFFFF" android:pathData="M69.24,57.03c0,5.36 0.17,9.73 0.34,13.16H58.51l-0.59,-5.95H57.67c-1.34,2.43 -4.78,6.62 -10.48,6.62c-2.18,0 -4.61,-0.59 -6.12,-2.6h-0.25l1.01,18.53H30.43V29.2h12.74v21.88c0,5.7 1.68,9.56 6.54,9.56c3.94,0 6.29,-3.35 6.79,-5.95V29.2h12.74V57.03z"/>
+    <path
+        android:fillColor="#FFFFFF"
+        android:strokeWidth="1"
+        android:pathData="M 9.480132,15.52126 C 11.554865,10.34751 13.629599,5.17375 15.704331,0 c 1.080952,0 2.161906,0 3.242858,0 0,6.34624 0,12.69248 0,19.03872 -0.836867,0 -1.673733,0 -2.5106,0 -0.09507,-5.13149 0.08842,-10.26225 0.248444,-15.39051 -2.087808,5.13017 -4.175617,10.26034 -6.263426,15.39051 -0.636368,0 -1.272735,0 -1.909102,0 C 6.429055,13.89983 4.345605,8.76095 2.262155,3.62206 2.517056,8.75668 2.510634,13.89919 2.5106,19.03872 c -0.836867,0 -1.673733,0 -2.5106,0 C 0,12.69248 0,6.34624 0,0 1.080952,0 2.161906,0 3.242859,0 5.32195,5.17375 7.401041,10.34751 9.480132,15.52126 Z" />
 </vector>

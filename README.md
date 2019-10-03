@@ -1,8 +1,8 @@
-# ![ulogger_logo_small](https://cloud.githubusercontent.com/assets/3366666/24080878/0288f046-0ca8-11e7-9ffd-753e5c417756.png) μlogger [![Build Status](https://travis-ci.com/bfabiszewski/ulogger-android.svg?branch=master)](https://travis-ci.com/bfabiszewski/ulogger-android) [![Coverity Status](https://scan.coverity.com/projects/12109/badge.svg)](https://scan.coverity.com/projects/bfabiszewski-ulogger-android)
+# ![ulogger_logo_small](https://cloud.githubusercontent.com/assets/3366666/24080878/0288f046-0ca8-11e7-9ffd-753e5c417756.png) mobile [![Build Status](https://travis-ci.com/bfabiszewski/ulogger-android.svg?branch=master)](https://travis-ci.com/bfabiszewski/ulogger-android) [![Coverity Status](https://scan.coverity.com/projects/12109/badge.svg)](https://scan.coverity.com/projects/bfabiszewski-ulogger-android)
 
-μlogger [*micro-logger*] is an android application for continuous logging of location coordinates, designed to record hiking, biking tracks and other outdoor activities. 
+mobile [*micro-logger*] is an android application for continuous logging of location coordinates, designed to record hiking, biking tracks and other outdoor activities. 
 Application works in background. Track points are saved at chosen intervals and may be uploaded to dedicated server in real time.
-This client works with [μlogger web server](https://github.com/bfabiszewski/ulogger-server). 
+This client works with [mobile web server](https://github.com/bfabiszewski/ulogger-server). 
 Together they make a complete self owned and controlled client–server solution.
 
 ## Features
@@ -21,10 +21,10 @@ Together they make a complete self owned and controlled client–server solution
 ![api24_settings](https://user-images.githubusercontent.com/3366666/57197959-79f92400-6f6d-11e9-8a5a-98b9a2b4bd95.png)
 
 ## Download
-[![Download from f-droid](https://img.shields.io/f-droid/v/net.fabiszewski.ulogger.svg?color=green)](https://f-droid.org/app/net.fabiszewski.ulogger)
+[![Download from f-droid](https://img.shields.io/f-droid/v/de.arikgrahl.mobile.svg?color=green)](https://f-droid.org/app/de.arikgrahl.mobile)
 
 ## Help
-- μlogger's current status is shown by two leds, one for location tracking and one for web synchronization: 
+- mobile's current status is shown by two leds, one for location tracking and one for web synchronization: 
 
 led | tracking | synchronization
 -|-------- | ---------------
@@ -35,11 +35,11 @@ led | tracking | synchronization
 - clicking on current track's name will show track statistics
 
 ## Automating
-- μlogger may accept commands from other applications for starting or stopping its operations. To make it work you must explicitly enable this functionality in app settings ("Allow external commands" switch). 
+- mobile may accept commands from other applications for starting or stopping its operations. To make it work you must explicitly enable this functionality in app settings ("Allow external commands" switch). 
 - commands are sent as `broadcasts` with following `intent` parameters:
-  - target package: `net.fabiszewski.ulogger`
-  - target class: `net.fabiszewski.ulogger.ExternalCommandReceiver`
-  - action: `net.fabiszewski.ulogger.intent.action.COMMAND`
+  - target package: `de.arikgrahl.mobile`
+  - target class: `de.arikgrahl.mobile.ExternalCommandReceiver`
+  - action: `de.arikgrahl.mobile.intent.action.COMMAND`
   - extra: `"command": [command name]`, where command name is one of: 
     - `"start logger"` for starting position logging
     - `"start new logger"` for creating a New Track and starting position logging to it 
@@ -48,7 +48,7 @@ led | tracking | synchronization
 - third party examples:
   - Automate (LlamaLab) – Send broadcast block with `Package`, `Receiver Class` and `Action` fields as above and `Extras` field eg. `{"command": "start logger"}`
   - Tasker (joaomgcd) – System → Send intent. Fields `Action`, `Package`, `Class` as above and `Extra` field eg. `command:start logger`
-- command line: `am broadcast -a net.fabiszewski.ulogger.intent.action.COMMAND -e "command" "start logger" net.fabiszewski.ulogger net.fabiszewski.ulogger.ExternalCommandReceiver`
+- command line: `am broadcast -a de.arikgrahl.mobile.intent.action.COMMAND -e "command" "start logger" de.arikgrahl.mobile de.arikgrahl.mobile.ExternalCommandReceiver`
 
 ## Contribute translations
 [![Translate with transifex](https://img.shields.io/badge/translate-transifex-green.svg)](https://www.transifex.com/bfabiszewski/ulogger/)
