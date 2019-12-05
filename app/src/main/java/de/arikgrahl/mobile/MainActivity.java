@@ -124,7 +124,9 @@ public class MainActivity extends AppCompatActivity {
         yellowFilter = new PorterDuffColorFilter(ContextCompat.getColor(this, R.color.colorYellow), PorterDuff.Mode.SRC_ATOP);
         db = DbAccess.getInstance();
         db.open(this);
-        startLogger();
+        if (!LoggerService.isRunning()) {
+            startLogger();
+        }
     }
 
     /**
@@ -151,7 +153,9 @@ public class MainActivity extends AppCompatActivity {
         }
         registerBroadcastReceiver();
         updateStatus();
-        startLogger();
+        if (!LoggerService.isRunning()) {
+            startLogger();
+        }
     }
 
     /**
