@@ -17,11 +17,13 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.HandlerThread;
@@ -396,7 +398,22 @@ public class LoggerService extends Service {
 
                 lastLocation = loc;
                 lastUpdateRealtime = loc.getElapsedRealtimeNanos() / 1000000;
-                db.writeLocation(loc);
+
+                IntentFilter ifilter = new IntentFilter(Intent.ACTION_BATTERY_CHANGED);
+                Intent battery = getApplicationContext().registerReceiver(null, ifilter);
+                int status = battery.getIntExtra(BatteryManager.EXTRA_STATUS, -1);
+                String batteryStatus;
+                if (status == BatteryManager.BATTERY_STATUS_CHARGING ||
+                    status == BatteryManager.BATTERY_STATUS_FULL) {
+                    batteryStatus = "charging";
+                } else {
+                    batteryStatus = "discharging";
+                }
+                int level = battery.getIntExtra(BatteryManager.EXTRA_LEVEL, -1);
+                int scale = battery.getIntExtra(BatteryManager.EXTRA_SCALE, -1);
+                float batteryLevel = level * 100 / (float)scale;
+
+                db.writeLocation(loc, batteryStatus, batteryLevel);
                 sendBroadcast(BROADCAST_LOCATION_UPDATED);
                 if (liveSync) {
                     startService(syncIntent);

@@ -246,6 +246,8 @@ public class WebSyncService extends IntentService {
         params.put(WebHelper.PARAM_TIME, DbAccess.getTime(cursor));
         params.put(WebHelper.PARAM_LAT, DbAccess.getLatitude(cursor));
         params.put(WebHelper.PARAM_LON, DbAccess.getLongitude(cursor));
+        params.put(WebHelper.PARAM_BATTERY_STATUS, DbAccess.getBatteryStatus(cursor));
+        params.put(WebHelper.PARAM_BATTERY_LEVEL, DbAccess.getBatteryLevel(cursor));
         if (DbAccess.hasAltitude(cursor)) {
             params.put(WebHelper.PARAM_ALT, DbAccess.getAltitude(cursor));
         }

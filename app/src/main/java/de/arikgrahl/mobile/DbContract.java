@@ -33,6 +33,8 @@ final class DbContract {
         public static final String COLUMN_PROVIDER = "provider";
         public static final String COLUMN_SYNCED = "synced";
         public static final String COLUMN_ERROR = "error";
+        public static final String COLUMN_BATTERY_STATUS = "battery_status";
+        public static final String COLUMN_BATTERY_LEVEL = "battery_level";
     }
 
     /** Track table */

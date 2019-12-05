@@ -60,6 +60,8 @@ class WebHelper {
     static final String PARAM_BEARING = "bearing";
     static final String PARAM_ACCURACY = "accuracy";
     static final String PARAM_PROVIDER = "provider";
+    static final String PARAM_BATTERY_STATUS = "battery_status";
+    static final String PARAM_BATTERY_LEVEL = "battery_level";
     // todo add comments, images
 //    static final String PARAM_COMMENT = "comment";
 //    static final String PARAM_IMAGEID = "imageid";

@@ -37,7 +37,10 @@ class DbHelper extends SQLiteOpenHelper {
             DbContract.Positions.COLUMN_ACCURACY + " TEXT DEFAULT NULL," +
             DbContract.Positions.COLUMN_PROVIDER + " TEXT," +
             DbContract.Positions.COLUMN_SYNCED + " INTEGER DEFAULT 0," +
-            DbContract.Positions.COLUMN_ERROR + " TEXT DEFAULT NULL)";
+            DbContract.Positions.COLUMN_ERROR + " TEXT DEFAULT NULL," +
+            DbContract.Positions.COLUMN_BATTERY_STATUS + " TEXT DEFAULT NULL," +
+            DbContract.Positions.COLUMN_BATTERY_LEVEL + " TEXT DEFAULT NULL)";
+
     private static final String SQL_CREATE_TRACK =
             "CREATE TABLE " + DbContract.Track.TABLE_NAME + " (" +
                     DbContract.Track.COLUMN_ID + " INTEGER DEFAULT NULL," +

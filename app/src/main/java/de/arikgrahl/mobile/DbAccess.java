@@ -75,12 +75,14 @@ class DbAccess {
      *
      * @param loc Location
      */
-    void writeLocation(Location loc) {
+    void writeLocation(Location loc, String batteryStatus, float batteryLevel) {
         if (Logger.DEBUG) { Log.d(TAG, "[writeLocation]"); }
         ContentValues values = new ContentValues();
         values.put(DbContract.Positions.COLUMN_TIME, loc.getTime() / 1000);
         values.put(DbContract.Positions.COLUMN_LATITUDE, loc.getLatitude());
         values.put(DbContract.Positions.COLUMN_LONGITUDE, loc.getLongitude());
+        values.put(DbContract.Positions.COLUMN_BATTERY_STATUS, batteryStatus);
+        values.put(DbContract.Positions.COLUMN_BATTERY_LEVEL, batteryLevel);
         if (loc.hasBearing()) {
             values.put(DbContract.Positions.COLUMN_BEARING, loc.getBearing());
         }
@@ -496,6 +498,14 @@ class DbAccess {
      */
     static String getLongitude(Cursor cursor) {
         return cursor.getString(cursor.getColumnIndex(DbContract.Positions.COLUMN_LONGITUDE));
+    }
+
+    static String getBatteryStatus(Cursor cursor) {
+        return cursor.getString(cursor.getColumnIndex(DbContract.Positions.COLUMN_BATTERY_STATUS));
+    }
+
+    static String getBatteryLevel(Cursor cursor) {
+        return cursor.getString(cursor.getColumnIndex(DbContract.Positions.COLUMN_BATTERY_LEVEL));
     }
 
     /**
