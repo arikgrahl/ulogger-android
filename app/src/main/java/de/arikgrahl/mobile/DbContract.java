@@ -37,6 +37,16 @@ final class DbContract {
         public static final String COLUMN_BATTERY_LEVEL = "battery_level";
     }
 
+    /** Accelerations table **/
+    public static class Accelerations implements BaseColumns {
+        public static final String TABLE_NAME = "accelerations";
+        public static final String COLUMN_TIME = "time";
+        public static final String COLUMN_X = "x";
+        public static final String COLUMN_Y = "y";
+        public static final String COLUMN_Z = "z";
+        public static final String COLUMN_SYNCED = "synced";
+    };
+
     /** Track table */
     public static class Track {
         public static final String TABLE_NAME = "track";

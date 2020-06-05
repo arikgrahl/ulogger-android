@@ -67,6 +67,11 @@ class WebHelper {
 //    static final String PARAM_IMAGEID = "imageid";
     static final String PARAM_TRACKID = "trackid";
 
+    private static final String ACTION_ADDACC = "addacc";
+    static final String PARAM_X = "x";
+    static final String PARAM_Y = "y";
+    static final String PARAM_Z = "z";
+
     // auth
     private static final String ACTION_AUTH = "auth";
     // todo adduser not implemented (do we need it?)
@@ -229,6 +234,21 @@ class WebHelper {
             error = json.getBoolean("error");
         } catch (JSONException e) {
             if (Logger.DEBUG) { Log.d(TAG, "[postPosition json failed: " + e + "]"); }
+        }
+        if (error) {
+            throw new IOException(context.getString(R.string.e_server_response));
+        }
+    }
+
+    void postAcceleration(Map<String, String> params) throws IOException, WebAuthException {
+        params.put(PARAM_ACTION, ACTION_ADDACC);
+        String response = postWithParams(params);
+        boolean error = true;
+        try {
+            JSONObject json = new JSONObject(response);
+            error = json.getBoolean("error");
+        } catch (JSONException e) {
+            if (Logger.DEBUG) { Log.d(TAG, "[postAcceleration json failed: " + e + "]"); }
         }
         if (error) {
             throw new IOException(context.getString(R.string.e_server_response));

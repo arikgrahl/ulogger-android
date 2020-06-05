@@ -100,6 +100,15 @@ class DbAccess {
         db.insert(DbContract.Positions.TABLE_NAME, null, values);
     }
 
+    void writeAcceleration(Long time, float x, float y, float z) {
+        ContentValues values = new ContentValues();
+        values.put(DbContract.Accelerations.COLUMN_TIME, time);
+        values.put(DbContract.Accelerations.COLUMN_X, x);
+        values.put(DbContract.Accelerations.COLUMN_Y, y);
+        values.put(DbContract.Accelerations.COLUMN_Z, z);
+        db.insert(DbContract.Accelerations.TABLE_NAME, null, values);
+    }
+
     /**
      * Get result set containing all positions.
      *
@@ -124,6 +133,15 @@ class DbAccess {
                 new String[] {"0"},
                 null, null,
                 DbContract.Positions._ID);
+    }
+
+    Cursor getUnsyncedAccelerations() {
+        return db.query(DbContract.Accelerations.TABLE_NAME,
+                new String[] {"*"},
+                DbContract.Accelerations.COLUMN_SYNCED + "=?",
+                new String[] {"0"},
+                null, null,
+                DbContract.Accelerations._ID);
     }
 
     /**
@@ -175,6 +193,15 @@ class DbAccess {
         values.put(DbContract.Positions.COLUMN_SYNCED, "1");
         values.putNull(DbContract.Positions.COLUMN_ERROR);
         db.update(DbContract.Positions.TABLE_NAME,
+                values,
+                DbContract.Positions._ID + "=?",
+                new String[] { String.valueOf(id) });
+    }
+
+    void setSyncedAcceleration(int id) {
+        ContentValues values = new ContentValues();
+        values.put(DbContract.Accelerations.COLUMN_SYNCED, "1");
+        db.update(DbContract.Accelerations.TABLE_NAME,
                 values,
                 DbContract.Positions._ID + "=?",
                 new String[] { String.valueOf(id) });
@@ -489,6 +516,18 @@ class DbAccess {
      */
     static String getLatitude(Cursor cursor) {
         return cursor.getString(cursor.getColumnIndex(DbContract.Positions.COLUMN_LATITUDE));
+    }
+
+    static String getX(Cursor cursor) {
+        return cursor.getString(cursor.getColumnIndex(DbContract.Accelerations.COLUMN_X));
+    }
+
+    static String getY(Cursor cursor) {
+        return cursor.getString(cursor.getColumnIndex(DbContract.Accelerations.COLUMN_Y));
+    }
+
+    static String getZ(Cursor cursor) {
+        return cursor.getString(cursor.getColumnIndex(DbContract.Accelerations.COLUMN_Z));
     }
 
     /**

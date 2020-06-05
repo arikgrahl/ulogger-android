@@ -21,6 +21,10 @@ import android.content.pm.PackageManager;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
@@ -99,7 +103,6 @@ public class MainActivity extends AppCompatActivity {
     private PorterDuffColorFilter greenFilter;
     private PorterDuffColorFilter yellowFilter;
 
-
     /**
      * Initialization
      * @param savedInstanceState Saved state
@@ -124,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
         yellowFilter = new PorterDuffColorFilter(ContextCompat.getColor(this, R.color.colorYellow), PorterDuff.Mode.SRC_ATOP);
         db = DbAccess.getInstance();
         db.open(this);
+
         if (!LoggerService.isRunning()) {
             startLogger();
         }

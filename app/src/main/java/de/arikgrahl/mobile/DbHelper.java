@@ -41,6 +41,16 @@ class DbHelper extends SQLiteOpenHelper {
             DbContract.Positions.COLUMN_BATTERY_STATUS + " TEXT DEFAULT NULL," +
             DbContract.Positions.COLUMN_BATTERY_LEVEL + " TEXT DEFAULT NULL)";
 
+    private static final String SQL_CREATE_ACCELERATIONS =
+            "CREATE TABLE " + DbContract.Accelerations.TABLE_NAME + " (" +
+                    DbContract.Accelerations._ID + " INTEGER PRIMARY KEY," +
+                    DbContract.Accelerations.COLUMN_TIME + " TEXT," +
+                    DbContract.Accelerations.COLUMN_X + " TEXT," +
+                    DbContract.Accelerations.COLUMN_Y + " TEXT," +
+                    DbContract.Accelerations.COLUMN_Z + " TEXT," +
+                    DbContract.Positions.COLUMN_SYNCED + " INTEGER DEFAULT 0)";
+
+
     private static final String SQL_CREATE_TRACK =
             "CREATE TABLE " + DbContract.Track.TABLE_NAME + " (" +
                     DbContract.Track.COLUMN_ID + " INTEGER DEFAULT NULL," +
@@ -48,6 +58,8 @@ class DbHelper extends SQLiteOpenHelper {
 
     private static final String SQL_DELETE_POSITIONS =
             "DROP TABLE IF EXISTS " + DbContract.Positions.TABLE_NAME;
+    private static final String SQL_DELETE_ACCELERATIONS =
+            "DROP TABLE IF EXISTS " + DbContract.Accelerations.TABLE_NAME;
     private static final String SQL_DELETE_TRACK =
             "DROP TABLE IF EXISTS " + DbContract.Track.TABLE_NAME;
 
@@ -80,6 +92,7 @@ class DbHelper extends SQLiteOpenHelper {
      */
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_POSITIONS);
+        db.execSQL(SQL_CREATE_ACCELERATIONS);
         db.execSQL(SQL_CREATE_TRACK);
     }
 
@@ -91,6 +104,7 @@ class DbHelper extends SQLiteOpenHelper {
      */
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(SQL_DELETE_POSITIONS);
+        db.execSQL(SQL_DELETE_ACCELERATIONS);
         db.execSQL(SQL_DELETE_TRACK);
         onCreate(db);
     }

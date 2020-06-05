@@ -167,6 +167,19 @@ public class WebSyncService extends IntentService {
                 handleError(e2);
             }
         }
+        try (Cursor cursor = db.getUnsyncedAccelerations()) {
+            while (cursor.moveToNext()) {
+                int rowId = cursor.getInt(cursor.getColumnIndex(DbContract.Accelerations._ID));
+                Map<String, String> params = cursorToMapAcceleration(cursor);
+                params.put(WebHelper.PARAM_TRACKID, String.valueOf(trackId));
+                web.postAcceleration(params);
+                db.setSyncedAcceleration(rowId);
+            }
+        } catch (WebAuthException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -263,6 +276,15 @@ public class WebSyncService extends IntentService {
         if (DbAccess.hasProvider(cursor)) {
             params.put(WebHelper.PARAM_PROVIDER, DbAccess.getProvider(cursor));
         }
+        return params;
+    }
+
+    private Map<String, String> cursorToMapAcceleration(Cursor cursor) {
+        Map<String, String> params = new HashMap<>();
+        params.put(WebHelper.PARAM_TIME, DbAccess.getTime(cursor));
+        params.put(WebHelper.PARAM_X, DbAccess.getX(cursor));
+        params.put(WebHelper.PARAM_Y, DbAccess.getY(cursor));
+        params.put(WebHelper.PARAM_Z, DbAccess.getZ(cursor));
         return params;
     }
 

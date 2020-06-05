@@ -20,6 +20,10 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -46,7 +50,7 @@ import static de.arikgrahl.mobile.MainActivity.UPDATED_PREFS;
  *
  */
 
-public class LoggerService extends Service {
+public class LoggerService extends Service implements SensorEventListener {
 
     private static final String TAG = LoggerService.class.getSimpleName();
     public static final String BROADCAST_LOCATION_DISABLED = "de.arikgrahl.mobile.broadcast.location_disabled";
@@ -82,12 +86,19 @@ public class LoggerService extends Service {
     private boolean useGps;
     private boolean useNet;
 
+    SensorManager sensorManager;
+    private Sensor accelerometer;
+
     /**
      * Basic initializations.
      */
     @Override
     public void onCreate() {
         if (Logger.DEBUG) { Log.d(TAG, "[onCreate]"); }
+
+        sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
+        accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        sensorManager.registerListener(this, accelerometer, 1);
 
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         if (mNotificationManager != null) {
@@ -308,6 +319,21 @@ public class LoggerService extends Service {
     public static void resetUpdateRealtime() {
 
         lastUpdateRealtime = 0;
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        System.out.println("ACCELEROMETER:\t" + event.values[0] + "\t" + event.values[1] + "\t" + event.values[2]);
+        if (db == null) {
+            db = DbAccess.getInstance();
+            db.open(this);
+        }
+        db.writeAcceleration(System.currentTimeMillis() / 1000, event.values[0], event.values[1], event.values[2]);
+    }
+
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
     }
 
     /**
