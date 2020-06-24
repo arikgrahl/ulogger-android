@@ -73,6 +73,7 @@ public class LoggerService extends Service {
     private DbAccess db;
     private int maxAccuracy;
     private float minDistance;
+    private long accelerometerFrequency;
     private long minTimeMillis;
     // max time tolerance is half min time, but not more that 5 min
     final private long minTimeTolerance = Math.min(minTimeMillis / 2, 5 * 60 * 1000);
@@ -91,7 +92,6 @@ public class LoggerService extends Service {
     private SensorEventListener accelerometerListener;
 
     private long mAccLast = 0;
-    private static final int iSensorRate = 100000;
 
     /**
      * Basic initializations.
@@ -200,6 +200,7 @@ public class LoggerService extends Service {
      */
     private void updatePreferences() {
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        accelerometerFrequency = Long.parseLong(prefs.getString(SettingsActivity.KEY_ACCELEROMETER_FREQUENCY, "0"));
         minTimeMillis = Long.parseLong(prefs.getString(SettingsActivity.KEY_MIN_TIME, getString(R.string.pref_mintime_default))) * 1000;
         minDistance = Float.parseFloat(prefs.getString(SettingsActivity.KEY_MIN_DISTANCE, getString(R.string.pref_mindistance_default)));
         maxAccuracy = Integer.parseInt(prefs.getString(SettingsActivity.KEY_MIN_ACCURACY, getString(R.string.pref_minaccuracy_default)));
@@ -404,13 +405,13 @@ public class LoggerService extends Service {
 
         @Override
         public void onSensorChanged(SensorEvent event) {
-            boolean isRateElapsed = false;
-            isRateElapsed = (event.timestamp / 1000) - mAccLast >= iSensorRate;
-            if (!isRateElapsed) {
+            if (accelerometerFrequency == 0) {
+                return;
+            }
+            if ((event.timestamp / 1000) - mAccLast < (1000000 / accelerometerFrequency)) {
                 return;
             }
             mAccLast = event.timestamp / 1000;
-            System.out.println("ACCELEROMETER:\t" + event.values[0] + "\t" + event.values[1] + "\t" + event.values[2]);
             if (Logger.DEBUG) { Log.d(TAG, "[accelerometer data tracked: \t" + event.values[0] + "\t" + event.values[1] + "\t" + event.values[2] + "]"); }
             if (db == null) {
                 db = DbAccess.getInstance();

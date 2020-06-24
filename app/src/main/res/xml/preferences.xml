@@ -16,6 +16,15 @@
         android:title="@string/pref_cat_location"
         android:icon="@drawable/ic_location_on_white_24dp">
         <de.arikgrahl.mobile.ListWithEditTextPreference
+            android:key="prefAccelerometerFrequency"
+            android:title="Accelerometer Frequency"
+            android:dialogMessage="Accelerometer Frequency"
+            android:entries="@array/accelerometerFrequencies"
+            android:entryValues="@array/accelerometerFrequencyValues"
+            android:defaultValue="1"
+            ulogger:otherSummary="Accelerometer Frequency"
+            app:useSimpleSummaryProvider="true" />
+        <de.arikgrahl.mobile.ListWithEditTextPreference
             android:key="prefMinTime"
             android:title="@string/pref_mintime_title"
             android:dialogMessage="@string/pref_mintime_summary"

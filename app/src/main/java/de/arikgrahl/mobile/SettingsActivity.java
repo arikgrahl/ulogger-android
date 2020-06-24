@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class SettingsActivity extends AppCompatActivity {
 
+    public static final String KEY_ACCELEROMETER_FREQUENCY = "prefAccelerometerFrequency";
     public static final String KEY_AUTO_START = "prefAutoStart";
     public static final String KEY_HOST = "prefHost";
     public static final String KEY_LIVE_SYNC = "prefLiveSync";
