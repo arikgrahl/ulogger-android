@@ -50,7 +50,7 @@ import static de.arikgrahl.mobile.MainActivity.UPDATED_PREFS;
  *
  */
 
-public class LoggerService extends Service implements SensorEventListener {
+public class LoggerService extends Service {
 
     private static final String TAG = LoggerService.class.getSimpleName();
     public static final String BROADCAST_LOCATION_DISABLED = "de.arikgrahl.mobile.broadcast.location_disabled";
@@ -88,6 +88,10 @@ public class LoggerService extends Service implements SensorEventListener {
 
     SensorManager sensorManager;
     private Sensor accelerometer;
+    private SensorEventListener accelerometerListener;
+
+    private long mAccLast = 0;
+    private static final int iSensorRate = 100000;
 
     /**
      * Basic initializations.
@@ -98,7 +102,8 @@ public class LoggerService extends Service implements SensorEventListener {
 
         sensorManager = (SensorManager)getSystemService(Context.SENSOR_SERVICE);
         accelerometer = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
-        sensorManager.registerListener(this, accelerometer, 1);
+        accelerometerListener = new mAccelerationListener();
+        sensorManager.registerListener(accelerometerListener, accelerometer, SensorManager.SENSOR_DELAY_FASTEST);
 
         mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         if (mNotificationManager != null) {
@@ -321,21 +326,6 @@ public class LoggerService extends Service implements SensorEventListener {
         lastUpdateRealtime = 0;
     }
 
-    @Override
-    public void onSensorChanged(SensorEvent event) {
-        System.out.println("ACCELEROMETER:\t" + event.values[0] + "\t" + event.values[1] + "\t" + event.values[2]);
-        if (db == null) {
-            db = DbAccess.getInstance();
-            db.open(this);
-        }
-        db.writeAcceleration(System.currentTimeMillis() / 1000, event.values[0], event.values[1], event.values[2]);
-    }
-
-    @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-
-    }
-
     /**
      * Main service thread class handling location updates.
      */
@@ -408,6 +398,31 @@ public class LoggerService extends Service implements SensorEventListener {
     private void sendBroadcast(String broadcast) {
         Intent intent = new Intent(broadcast);
         sendBroadcast(intent);
+    }
+
+    private class mAccelerationListener implements  SensorEventListener {
+
+        @Override
+        public void onSensorChanged(SensorEvent event) {
+            boolean isRateElapsed = false;
+            isRateElapsed = (event.timestamp / 1000) - mAccLast >= iSensorRate;
+            if (!isRateElapsed) {
+                return;
+            }
+            mAccLast = event.timestamp / 1000;
+            System.out.println("ACCELEROMETER:\t" + event.values[0] + "\t" + event.values[1] + "\t" + event.values[2]);
+            if (Logger.DEBUG) { Log.d(TAG, "[accelerometer data tracked: \t" + event.values[0] + "\t" + event.values[1] + "\t" + event.values[2] + "]"); }
+            if (db == null) {
+                db = DbAccess.getInstance();
+                db.open(getApplicationContext());
+            }
+            db.writeAcceleration(System.currentTimeMillis() / 1000, event.values[0], event.values[1], event.values[2]);
+        }
+
+        @Override
+        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+        }
     }
 
     /**
