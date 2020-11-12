@@ -405,6 +405,8 @@ public class LoggerService extends Service {
 
         @Override
         public void onSensorChanged(SensorEvent event) {
+            if (Logger.DEBUG) { Log.d(TAG, "[accelerometerFrequency: \t" + accelerometerFrequency + "]"); }
+
             if (accelerometerFrequency == 0) {
                 return;
             }

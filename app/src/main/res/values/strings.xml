@@ -117,6 +117,10 @@
         <item quantity="one">%d position behind</item>
         <item quantity="other">%d positions behind</item>
     </plurals>
+    <plurals name="label_accelerations_behind">
+        <item quantity="one">%d acceleration behind</item>
+        <item quantity="other">%d accelerations behind</item>
+    </plurals>
     <string name="track_server_setup_warning">If you change server setup you may not be able to synchronize current track.</string>
     <string name="pref_mintime_other">Minimum time interval in seconds</string>
     <string name="pref_mindistance_other">Minimum distance in meters</string>

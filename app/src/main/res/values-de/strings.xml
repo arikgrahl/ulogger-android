@@ -99,6 +99,10 @@
         <item quantity="one">%d Position Rückstand</item>
         <item quantity="other">%d Positionen Rückstand</item>
     </plurals>
+    <plurals name="label_accelerations_behind">
+        <item quantity="one">%d Beschleunigung Rückstand</item>
+        <item quantity="other">%d Beschleunigungen Rückstand</item>
+    </plurals>
     <string name="track_server_setup_warning">Wenn das Server-Setup verändert wird, funktioniert die aktuelle Synchronisation u.U. nicht mehr.</string>
     <string name="pref_mintime_other">Mindester Zeitabstand in Sekunden</string>
     <string name="pref_mindistance_other">Mindestentfernung in Metern</string>

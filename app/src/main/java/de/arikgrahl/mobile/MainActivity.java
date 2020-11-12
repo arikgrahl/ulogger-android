@@ -577,10 +577,10 @@ public class MainActivity extends AppCompatActivity {
      * Update synchronization status label and led
      * @param unsynced Count of not synchronized positions
      */
-    private void updateSyncStatus(int unsynced) {
+    private void updateSyncStatus(int unsyncedPositions, int unsyncedAccelerations) {
         String text;
-        if (unsynced > 0) {
-            text = getResources().getQuantityString(R.plurals.label_positions_behind, unsynced, unsynced);
+        if (unsyncedPositions > 0 || unsyncedAccelerations > 0) {
+            text = getResources().getQuantityString(R.plurals.label_positions_behind, unsyncedPositions, unsyncedPositions) + "\n" + getResources().getQuantityString(R.plurals.label_accelerations_behind, unsyncedAccelerations, unsyncedAccelerations);
             if (syncError) {
                 setSyncLed(LED_RED);
             } else {
@@ -600,7 +600,8 @@ public class MainActivity extends AppCompatActivity {
     private void updateStatus() {
         updateLocationLabel(LoggerService.lastUpdateRealtime());
         // get sync status
-        int count = db.countUnsynced();
+        int countUnsyncedPositions = db.countUnsyncedPositions();
+        int countUnsyncedAccelerations = db.countUnsyncedAccelerations();
         String error = db.getError();
         if (error != null) {
             if (Logger.DEBUG) { Log.d(TAG, "[sync error: " + error + "]"); }
@@ -608,7 +609,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             resetSyncError();
         }
-        updateSyncStatus(count);
+        updateSyncStatus(countUnsyncedPositions, countUnsyncedAccelerations);
     }
 
     /**
@@ -695,12 +696,12 @@ public class MainActivity extends AppCompatActivity {
                     updateLocationLabel(LoggerService.lastUpdateRealtime());
                     setLocLed(LED_GREEN);
                     if (!pref_liveSync) {
-                        updateSyncStatus(db.countUnsynced());
+                        updateSyncStatus(db.countUnsyncedPositions(), db.countUnsyncedAccelerations());
                     }
                     break;
                 case WebSyncService.BROADCAST_SYNC_DONE:
-                    final int unsyncedCount = db.countUnsynced();
-                    updateSyncStatus(unsyncedCount);
+                    final int unsyncedCount = db.countUnsyncedPositions();
+                    updateSyncStatus(db.countUnsyncedPositions(), db.countUnsyncedAccelerations());
                     setSyncLed(LED_GREEN);
                     // reset error flag and label
                     resetSyncError();
@@ -711,7 +712,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     break;
                 case (WebSyncService.BROADCAST_SYNC_FAILED): {
-                    updateSyncStatus(db.countUnsynced());
+                    updateSyncStatus(db.countUnsyncedPositions(), db.countUnsyncedAccelerations());
                     setSyncLed(LED_RED);
                     // set error flag and label
                     String message = intent.getStringExtra("message");

@@ -221,8 +221,22 @@ class DbAccess {
      *
      * @return Count
      */
-    int countUnsynced() {
+    int countUnsyncedPositions() {
         Cursor count = db.query(DbContract.Positions.TABLE_NAME,
+                new String[] {"COUNT(*)"},
+                DbContract.Positions.COLUMN_SYNCED + "=?",
+                new String[] {"0"},
+                null, null, null);
+        int result = 0;
+        if (count.moveToFirst()) {
+            result = count.getInt(0);
+        }
+        count.close();
+        return result;
+    }
+
+    int countUnsyncedAccelerations() {
+        Cursor count = db.query(DbContract.Accelerations.TABLE_NAME,
                 new String[] {"COUNT(*)"},
                 DbContract.Positions.COLUMN_SYNCED + "=?",
                 new String[] {"0"},
@@ -242,7 +256,7 @@ class DbAccess {
      * @return True if synchronization needed, false otherwise
      */
     boolean needsSync() {
-        return (countUnsynced() > 0);
+        return (countUnsyncedPositions() > 0);
     }
 
     /**
