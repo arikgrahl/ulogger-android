@@ -20,12 +20,15 @@ import android.util.Log;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.net.ConnectException;
 import java.net.MalformedURLException;
 import java.net.NoRouteToHostException;
 import java.net.URISyntaxException;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static android.app.PendingIntent.FLAG_ONE_SHOT;
@@ -46,6 +49,7 @@ public class WebSyncService extends IntentService {
     private static PendingIntent pi = null;
 
     final private static int FIVE_MINUTES = 1000 * 60 * 5;
+    final private static int BULK_SIZE = 100;
 
 
     /**
@@ -135,8 +139,14 @@ public class WebSyncService extends IntentService {
      * @param trackId Current track id
      */
     private void doSync(int trackId) {
+        if (Logger.DEBUG) {
+            Log.d(TAG, "doSync");
+        }
         // iterate over positions in db
         try (Cursor cursor = db.getUnsynced()) {
+            if (Logger.DEBUG) {
+                Log.d(TAG, "sync positions");
+            }
             while (cursor.moveToNext()) {
                 int rowId = cursor.getInt(cursor.getColumnIndex(DbContract.Positions._ID));
                 Map<String, String> params = cursorToMap(cursor);
@@ -167,18 +177,39 @@ public class WebSyncService extends IntentService {
                 handleError(e2);
             }
         }
+
+        Map<String, String>[] params = new HashMap[BULK_SIZE];
+        int[] rowIds = new int[BULK_SIZE];
+        int i = 0;
+
         try (Cursor cursor = db.getUnsyncedAccelerations()) {
-            while (cursor.moveToNext()) {
-                int rowId = cursor.getInt(cursor.getColumnIndex(DbContract.Accelerations._ID));
-                Map<String, String> params = cursorToMapAcceleration(cursor);
-                params.put(WebHelper.PARAM_TRACKID, String.valueOf(trackId));
-                web.postAcceleration(params);
-                db.setSyncedAcceleration(rowId);
+            if (Logger.DEBUG) {
+                Log.d(TAG, "sync accelerations");
             }
+            while (cursor.moveToNext()) {
+                rowIds[i] = cursor.getInt(cursor.getColumnIndex(DbContract.Accelerations._ID));
+                params[i] = cursorToMapAcceleration(cursor);
+                params[i].put(WebHelper.PARAM_TRACKID, String.valueOf(trackId));
+                i++;
+                if (i == 10) {
+                    i = 0;
+                    syncAccelerations(params, rowIds);
+                }
+            }
+            syncAccelerations(params, rowIds);
         } catch (WebAuthException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private void syncAccelerations(Map<String, String>[] params, int[] rowIds) throws IOException, WebAuthException {
+        web.postAcceleration(params);
+        db.setSyncedAcceleration(rowIds);
+        for (int i = 0; i < BULK_SIZE; i++) {
+            params[i] = null;
+            rowIds[i] = 0;
         }
     }
 

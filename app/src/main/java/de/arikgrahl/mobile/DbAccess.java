@@ -198,13 +198,16 @@ class DbAccess {
                 new String[] { String.valueOf(id) });
     }
 
-    void setSyncedAcceleration(int id) {
-        ContentValues values = new ContentValues();
-        values.put(DbContract.Accelerations.COLUMN_SYNCED, "1");
-        db.update(DbContract.Accelerations.TABLE_NAME,
-                values,
-                DbContract.Positions._ID + "=?",
-                new String[] { String.valueOf(id) });
+    void setSyncedAcceleration(int[] ids) {
+        for (int i = 0; i < 10; i++) {
+            int id = ids[i];
+            ContentValues values = new ContentValues();
+            values.put(DbContract.Accelerations.COLUMN_SYNCED, "1");
+            db.update(DbContract.Accelerations.TABLE_NAME,
+                    values,
+                    DbContract.Positions._ID + "=?",
+                    new String[] { String.valueOf(id) });
+        }
     }
 
     /**

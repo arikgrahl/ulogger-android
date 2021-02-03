@@ -11,8 +11,11 @@ package de.arikgrahl.mobile;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.text.TextUtils;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.preference.PreferenceManager;
 
 import org.json.JSONException;
@@ -31,8 +34,10 @@ import java.net.CookieStore;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * Web server communication
@@ -240,9 +245,17 @@ class WebHelper {
         }
     }
 
-    void postAcceleration(Map<String, String> params) throws IOException, WebAuthException {
-        params.put(PARAM_ACTION, ACTION_ADDACC);
-        String response = postWithParams(params);
+    void postAcceleration(Map<String, String>[] params) throws IOException, WebAuthException {
+        Map<String, String> param = new HashMap<String, String>();
+        String[] accelerations = new String[10];
+        for (int i = 0; i < 10; i++) {
+            if (params[i] != null) {
+                accelerations[i] = params[i].get("trackid") + "," + params[i].get("x") + ","  + params[i].get("y") + ","  + params[i].get("z") + "," + params[i].get("time");
+            }
+        }
+        param.put("accelerations", TextUtils.join(";", accelerations));
+        param.put(PARAM_ACTION, ACTION_ADDACC);
+        String response = postWithParams(param);
         boolean error = true;
         try {
             JSONObject json = new JSONObject(response);
